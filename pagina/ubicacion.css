@@ -17,6 +17,10 @@ hr {
     border: none;
     margin: 5px auto 0 auto; /* Centra horizontalmente */
 }
+body{
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+}
 
 /*-----------------------------------------------------------------------------------------
                             TODO LO RELACIONADO CON EL MAPA
@@ -31,6 +35,7 @@ hr {
     border-radius: 30px;
 }
 
+/*-------------------------------------------------*/
 /* Estilos personalizados para el offcanvas */
 .offcanvas-header {
     display: flex;
@@ -62,6 +67,7 @@ hr {
     margin-right: 8px; /* Espacio entre los botones */
 }
 
+/*-------------------------------------------------*/
 /* MARCAR LAS LINEAS DE LAS FILAS*/
 .filaOffCanvas {
     position: relative; /* Necesario para posicionar el pseudo-elemento */
@@ -81,6 +87,7 @@ hr {
     display: none;
   }
 
+  /*-------------------------------------------------*/
 /* TEXTO DEL CONTENIDO DE LAS FILAS*/
 .textoLuminaria{
     color: #000000; /* Color del texto claro */
@@ -96,6 +103,7 @@ hr {
     text-align: center;
 }
 
+/*-------------------------------------------------*/
 /* BOTON ENCENDIDO Y APAGADO*/
 .btnEncApa{
     background-color: #D3D3D3;
@@ -155,6 +163,7 @@ hr {
     transform: translateY(0px);
 }
 
+/*-------------------------------------------------*/
 /* IMAGENES PARA SELECCIONAR SI REGISTRO O GRAFICA */
 .graficas{
     transition: all 300ms;
@@ -172,8 +181,10 @@ hr {
     transform: scale(1.15);
 }
 
+/*-------------------------------------------------*/
 /* DISEÑO PARA LOS TITULOS DEL MONITOREO */
 .tituloMonitoreo{
+    color: #000;
     font-family: 'Roboto', sans-serif; /* Fuente Roboto */
     text-align: center; /* Centrar el texto */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra del texto */
@@ -203,12 +214,90 @@ hr {
     border-bottom: 5px solid #375db5; /* Subrayado */
   }
 
+/*-------------------------------------------------*/
 /* Ocultar todas las secciones por defecto */
 .seccion {
     display: none;
   }
-  
   /* Mostrar la sección activa */
   .seccion.activa {
     display: block;
   }
+
+/*-------------------------------------------------*/
+  /* Estilos para el contenedor principal */
+.contMonitoreo {
+    padding: 0;
+}
+/* Flexbox para alinear las columnas */
+.tablaFlex {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las columnas se ajusten en pantallas pequeñas */
+}
+
+/* Estilos para el contenido del contenedor de monitoreo*/
+.subtitulo{
+    font-size: 20px;
+    text-align: center;
+}
+.contGraRe{
+    font-size: 15px;
+    text-align: justify;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/*-----------------------------------------------------------------------------------------
+                           DISEÑO REGISTRO DE USUARIOS
+------------------------------------------------------------------------------------------*/
+/*Formulario */
+.formRegistro{
+    text-align: justify;
+    padding-left: 40px;
+}
+
+/*-------------------------------------------------*/
+/* Diseño del texto */
+.form-label{
+    padding-left: 25px;
+}
+
+/*-------------------------------------------------*/
+/*diseño de los textbox */
+.form-control{
+    width: 60%;
+    text-align: justify;
+    border-radius: 12px;
+    background-color: #ffffff;
+}
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 5px rgba(128, 189, 255, 0.5);
+}
+/* Cambiar el fondo de los elementos del dropdown al pasar el mouse */
+.form-control:hover {
+    background-color: #d0d0d0; /* Gris claro */
+    color: #000; /* Color del texto (opcional) */
+}
+
+/*-------------------------------------------------*/
+/* Diseño de los botones */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/*-----------------------------------------------------------------------------------------
+                           DISEÑO DEL FOCO
+------------------------------------------------------------------------------------------*/
+#foco {
+    width: 100px; /* Tamaño del contenedor */
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

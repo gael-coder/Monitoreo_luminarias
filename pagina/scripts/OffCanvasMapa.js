@@ -7,7 +7,7 @@ if (document.getElementById('map')) {
     setTimeout(() => {
         map.invalidateSize();
     }, 500);
-    
+
     var center = [25.446102, -100.993699]; // tec saltillo boilot
 
     // Inicializar el mapa
@@ -47,20 +47,56 @@ if (document.getElementById('map')) {
                 </div>
             </div>
             <div class="filaOffCanvas row">
-                <div class="col-12">
+                <div class="col-6">
                     <img src="${location.imagen}" alt="${location.title}">
                 </div>
+                <div id="foco" class="col-6 style="margin: 0 auto;">
+                    
+                </div>
             </div>
+
             <div class="filaOffCanvas row">
                 <div class="col-12 text-center">
                     <div class="mt-3">
-                        <button type="button" class="btnEncApa btn">ENCENDER</button>
-                        <button type="button" class="btnEncApa btn">APAGAR</button>
+                        <button id="encender" type="button" class="btnEncApa btn">ENCENDER</button>
+                        <button id="apagar" type="button" class="btnEncApa btn">APAGAR</button>
                     </div>
                 </div>
             </div>
         `;
     }
+
+    // Cargar la animación desde un JSON local
+   // Espera a que se abra el offcanvas para cargar la animación
+document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas', () => {
+    // Cargar la animación desde un JSON local
+    fetch('./foco.json') // Ruta relativa al archivo JSON 
+        .then(response => response.json()) // Convertir la respuesta a JSON
+        .then(data => {
+            const focoAnimacion = lottie.loadAnimation({
+                container: document.getElementById('foco'), // Contenedor HTML
+                renderer: 'svg', // Formato de renderizado
+                loop: false, // No repetir la animación
+                autoplay: false, // No iniciar automáticamente
+                animationData: data // JSON cargado localmente
+            });
+
+            // Controlar la animación con los botones (se asegura de que existan)
+            const btnEncender = document.getElementById('encender');
+            const btnApagar = document.getElementById('apagar');
+
+            if (btnEncender && btnApagar) {
+                btnEncender.addEventListener('click', () => focoAnimacion.play());
+                btnApagar.addEventListener('click', () => focoAnimacion.stop());
+            } else {
+                console.warn('Botones de encender/apagar no encontrados.');
+            }
+        })
+        .catch(error => {
+            console.error('Error al cargar el JSON:', error);
+        });
+});
+
 
     // Array de ubicaciones con contenido personalizado
     var locations = [
