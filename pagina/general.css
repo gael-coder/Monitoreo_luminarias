@@ -23,3 +23,12 @@ img.logos{
     max-height: 80px; /* Ajusta la altura máxima de las imágenes */
 }
 
+.nav-link{
+    color: #192C5A
+}
+
+/* Cambiar el fondo de los elementos del dropdown al pasar el mouse */
+.dropdown-item:hover {
+    background-color: #d0d0d0; /* Gris claro */
+    color: #000; /* Color del texto (opcional) */
+}
