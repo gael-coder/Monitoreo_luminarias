@@ -1,0 +1,65 @@
+/*----------------------------------------------------------------------------------------------------
+                                VIDEO REPRODUCCION TEC
+----------------------------------------------------------------------------------------------------*/
+#hero{
+    min-height: 90vh;
+    position: relative;  
+}
+video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.presentacion{
+    position: relative;
+    z-index: 2;
+}
+.capa{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #323232;
+    opacity: 0.70;
+}
+
+.btn:hover{
+    background-color: #192C5A;
+    border-color: #192C5A;
+}
+
+.footer-rectangle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px; /* Ajusta la altura del rectángulo */
+    background-color: #192C5A; /* Color morado */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.footer-left-text {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Estilos para el texto centrado abajo */
+.footer-center-text {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+    text-align: center;
+}

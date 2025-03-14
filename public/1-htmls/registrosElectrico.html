@@ -1,0 +1,96 @@
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luminarias</title>
+    <link rel="stylesheet" href="/csss/styles3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../imagenes/escudo_2977c841a7.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="header">
+        <img src="../imagenes/post_logo_educ.jpg" alt="Imagen 3">
+        <img src="../imagenes/tecnologico_nacional_de_mexico_campus_saltillo_cover.jpg" alt="Imagen 4">
+        <img src="../imagenes/Captura de pantalla 2025-02-19 121553.png" alt="Imagen 2">
+    </div>
+
+    <h1 class="titulo">MONITOREO ELÉCTRICO</h1>
+
+    <!-- Nueva Tabla -->
+    <table class="tabla">
+        <tbody>
+            <tr>
+                <td class="seccion_izquierda">
+                    <h2>REGISTROS</h2>
+
+                    <!-- Tabla interna para registros de consumo -->
+                    <table class="tabla_consumo">
+                        <thead>
+                            <tr>
+                                <th>id_luminaria</th>
+                                <th>Voltage consumido</th>
+                                <th>Consumo adicional 1</th>
+                                <th>Consumo adicional 2</th>
+                                <th>Fecha del consumo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>LUM001</td>
+                                <td>220V</td>
+                                <td>350W</td>
+                                <td>120W</td>
+                                <td>2025-03-01</td>
+                            </tr>
+                            <tr>
+                                <td>LUM002</td>
+                                <td>230V</td>
+                                <td>400W</td>
+                                <td>150W</td>
+                                <td>2025-03-02</td>
+                            </tr>
+                            <tr>
+                                <td>LUM003</td>
+                                <td>240V</td>
+                                <td>420W</td>
+                                <td>180W</td>
+                                <td>2025-03-03</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </td>
+                <td class="seccion_derecha">
+                    <h2>DATOS A BUSCAR</h2>
+                
+                    <!-- Input para ID de la luminaria -->
+                    <label for="id_luminaria">ID de la luminaria:</label>
+                    <input type="text" id="id_luminaria" name="luminaria">
+                
+                    <!-- Subtítulo para fecha de consumo -->
+                    <h3>Fecha de Consumo</h3>
+                
+                    <!-- Labels y inputs para seleccionar fechas -->
+                    <div class="fecha-container">
+                        <label for="fecha_1">Fecha 1:</label>
+                        <input type="date" id="fecha_1" name="fecha_1">
+                
+                        <label for="fecha_2">Fecha 2:</label>
+                        <input type="date" id="fecha_2" name="fecha_2">
+                    </div>
+                
+                    <!-- Espacio para las imágenes -->
+                    <div class="imagenes-container">
+                        <img src="../imagenes/tecnologico fondo2.jpg" alt="Imagen 1" class="imagen">
+                        <img src="../imagenes/tecnologico fondo3.jpg" alt="Imagen 2" class="imagen">
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

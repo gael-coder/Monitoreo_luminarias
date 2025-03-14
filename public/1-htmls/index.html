@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luminarias</title>
+    <link rel="stylesheet" href="/csss/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../imagenes/escudo_2977c841a7.png" type="image/x-icon">
+
+</head>
+
+<body>
+    <div class="header">
+        <img src="../imagenes/post_logo_educ.jpg" alt="Imagen 3">
+        <img src="../imagenes/tecnologico_nacional_de_mexico_campus_saltillo_cover.jpg" alt="Imagen 4">
+        <img src="../imagenes/Captura de pantalla 2025-02-19 121553.png" alt="Imagen 2">
+    </div>
+
+    <div class="rectangulo-blanco">
+        <!-- Sección de Login -->
+        <div class="login-container">
+            <h2>CENTRO DE CONTROL & MONITOREO</h2>
+            <form id="loginForm">
+                <label for="usuario">CORREO:</label>
+                <input type="text" id="usuario" name="usuario" required>
+
+                <label for="password">CONTRASEÑA:</label>
+                <input type="password" id="password" name="password" required>
+
+                <a href="#" class="olvidaste-clave">Olvidaste la clave</a>
+
+                <button type="button" id="ingresarBtn">Ingresar</button>
+            </form>
+        </div>
+
+        <!-- Sección de Imagen -->
+        <div class="imagen-container">
+            <img src="../imagenes/escudo_2977c841a7.png" alt="Imagen 1" id="imagenLogin">
+        </div>
+    </div>
+
+    <!-- Sección para el mensaje de bienvenida -->
+    <div class="mensaje-bienvenida" id="mensajeBienvenida">
+        BIENVENIDO AL CENTRO DE CONTROL & MONITOREO
+    </div>
+
+    <script>
+        // Lista de imágenes a mostrar en el contenedor
+        const imagenes = [
+            "../imagenes/tecnologico fondo2.jpg",
+            "../imagenes/tecnologico fondo4.jpg",
+            "../imagenes/tecnologico fondo5.jpg",
+            "../imagenes/tecnologico fondo6.jpg",
+            "../imagenes/472313458_980686220760138_2010104506202140217_n.jpg",
+            "../imagenes/tecnologico fondo7.jpg",
+        ];
+
+        let imagenIndex = 0; // Para controlar la imagen actual
+        const imagenElemento = document.getElementById("imagenLogin");
+
+        // Función para cambiar la imagen con el efecto de desvanecimiento
+        function cambiarImagen() {
+            // Agregar la clase de desvanecimiento a la imagen
+            imagenElemento.classList.add("fade");
+
+            // Esperar a que la animación de desvanecimiento termine antes de cambiar la imagen
+            setTimeout(() => {
+                // Incrementa el índice para la siguiente imagen
+                imagenIndex = (imagenIndex + 1) % imagenes.length;
+
+                // Cambiar la imagen del contenedor
+                imagenElemento.src = imagenes[imagenIndex];
+
+                // Eliminar la clase de desvanecimiento y re-aplicar la opacidad
+                setTimeout(() => {
+                    imagenElemento.classList.remove("fade");
+                }, 1000); // Esto coincide con la duración de la transición de desvanecimiento
+            }, 1000); // Tiempo que tarda el desvanecimiento (debe ser igual al tiempo de transición)
+        }
+
+        // Cambiar la imagen cada 5 segundos (5000 milisegundos)
+        setInterval(cambiarImagen, 5000);
+
+
+        //----------------------------------------------------
+        document.getElementById("ingresarBtn").addEventListener("click", function () {
+            const usuario = document.getElementById("usuario");
+            const password = document.getElementById("password");
+
+            // Verifica si ambos campos están llenos
+            if (usuario.value.trim() === "" || password.value.trim() === "") {
+                usuario.reportValidity();  // Muestra el borde rojo del campo
+                password.reportValidity(); // Muestra el borde rojo del campo
+            } else {
+                // Si ambos campos están llenos, se oculta el rectángulo
+                const rectanguloBlanco = document.querySelector(".rectangulo-blanco");
+                rectanguloBlanco.classList.add("fadeOut");
+
+                // Después de que la animación de desvanecimiento termine, mostrar el mensaje de bienvenida
+                setTimeout(() => {
+                    const mensajeBienvenida = document.getElementById("mensajeBienvenida");
+                    mensajeBienvenida.classList.add("visible"); // Activa la visibilidad y la animación de desvanecimiento
+                }, 1000); // Espera 1 segundo (duración de la animación fadeOut) antes de mostrar el mensaje
+
+                // Redirigir a la página después de 3 segundos
+                setTimeout(() => {
+                    window.location.href = "/Segunda_mitad/presentacion2.html"; // Redirige a la página deseada
+                }, 3000); // 3000 ms = 3 segundos
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>

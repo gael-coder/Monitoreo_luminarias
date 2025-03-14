@@ -1,0 +1,303 @@
+/*-----------------------------------------------------------------------------------------
+                            CSS PARA EL HTML DE UBICACION
+------------------------------------------------------------------------------------------*/
+/* TITULO */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+.titulo{
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  font-weight: 400; /* Negrita */
+  text-align: center;
+  position: relative;
+}
+hr {
+    width: 80%;
+    height: 3px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    margin: 5px auto 0 auto; /* Centra horizontalmente */
+}
+body{
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+}
+
+/*-----------------------------------------------------------------------------------------
+                            TODO LO RELACIONADO CON EL MAPA
+------------------------------------------------------------------------------------------*/
+/* MAPA INTERACTIVO DE OPENSTREETMAP */
+#map { 
+    position: relative;
+    width: 80%; 
+    align-items: center;
+    padding-top: 50%;
+    justify-content: center;
+    border-radius: 30px;
+}
+
+/*-------------------------------------------------*/
+/* Estilos personalizados para el offcanvas */
+.offcanvas-header {
+    display: flex;
+    justify-content: center; /* Centrar el contenido horizontalmente */
+    align-items: center; /* Centrar el contenido verticalmente */
+    width: 100%; /* Asegurar que ocupe todo el ancho */
+  }
+  .offcanvas-title {
+    font-family: 'Roboto', sans-serif; /* Fuente Roboto */
+    font-size: 1.5rem; /* Tamaño del texto */
+    font-weight: 700; /* Grosor de la fuente (negrita) */
+    text-align: center; /* Centrar el texto */
+    margin: 0; /* Eliminar margen predeterminado */
+    flex-grow: 1; /* Hacer que el título ocupe todo el espacio disponible */
+  }
+.custom-offcanvas {
+    background-color: #D3D3D3; /* Color de fondo oscuro */
+    color: #000000; /* Color del texto claro */
+    font-family: 'Roboto', sans-serif; /* Fuente Roboto */
+    font-size:larger; /* Tamaño del texto */
+    text-align: justify;
+}
+.custom-offcanvas img {
+    width: 100%; /* La imagen ocupa el ancho del offcanvas */
+    border-radius: 8px; /* Bordes redondeados */
+    margin-bottom: 16px; /* Espacio debajo de la imagen */
+}
+.custom-offcanvas .btn {
+    margin-right: 8px; /* Espacio entre los botones */
+}
+
+/*-------------------------------------------------*/
+/* MARCAR LAS LINEAS DE LAS FILAS*/
+.filaOffCanvas {
+    position: relative; /* Necesario para posicionar el pseudo-elemento */
+    padding: 10px 0; /* Espaciado interno */
+  }
+  .filaOffCanvas::after {
+    content: ''; /* Pseudo-elemento vacío */
+    position: absolute;
+    bottom: 0; /* Posición en la parte inferior */
+    left: 0;
+    width: 100%; /* Ancho completo */
+    height: 2px; /* Grosor de la línea */
+    background-color: #000000; /* Color de la línea */
+  }
+  /* Eliminar la línea de la última fila */
+  .filaOffCanvas:last-child::after {
+    display: none;
+  }
+
+  /*-------------------------------------------------*/
+/* TEXTO DEL CONTENIDO DE LAS FILAS*/
+.textoLuminaria{
+    color: #000000; /* Color del texto claro */
+    font-family: 'Roboto', sans-serif; /* Fuente Roboto */
+    font-size:medium; /* Tamaño del texto */
+    text-align: justify;
+}
+
+.textoEstado{
+    color: #000000; /* Color del texto claro */
+    font-family: 'Roboto', sans-serif; /* Fuente Roboto */
+    font-size: larger;
+    text-align: center;
+}
+
+/*-------------------------------------------------*/
+/* BOTON ENCENDIDO Y APAGADO*/
+.btnEncApa{
+    background-color: #D3D3D3;
+    border-color: #D3D3D3;
+}
+.btn:hover{
+    background-color: #192C5A;
+    border-color: #192C5A;
+    color: #D3D3D3;
+}
+/*-----------------------------------------------------------------------------------------
+                            DISEÑO PARA LA SELECCION DE MONITOREO
+------------------------------------------------------------------------------------------*/
+/* IMAGENES PARA REGISTROS O GRAFICAS*/
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lumAmb{
+    position: relative; /* Necesario para posicionar .graficaRegistro */
+    width: 497px; /* Tamaño fijo para coincidir con la imagen */
+    height: 497px; /* Tamaño fijo para coincidir con la imagen */
+    display: inline-block; /* Ajusta el tamaño al contenido */
+    margin: 0;
+    padding: 0;
+}
+.image{
+    display: block;
+    width: 100%; /* Ocupa el 100% del contenedor */
+    height: 100%; /* Ocupa el 100% del contenedor */
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
+}
+.graficaRegistro{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: 0.6s;
+    border-radius: 25px;
+}
+.graficaRegistro:hover{
+    opacity: 1;
+}
+.graficaRegistro > *{
+    transform: translateY(25px);
+    transition: transform 0.6s;
+}
+.graficaRegistro:hover > *{
+    transform: translateY(0px);
+}
+
+/*-------------------------------------------------*/
+/* IMAGENES PARA SELECCIONAR SI REGISTRO O GRAFICA */
+.graficas{
+    transition: all 300ms;
+    position: relative;
+}
+.graficas:hover{
+    transform: scale(1.15);
+}
+
+.registro{
+    transition: all 300ms;
+    position: relative;
+}
+.registro:hover{
+    transform: scale(1.15);
+}
+
+/*-------------------------------------------------*/
+/* DISEÑO PARA LOS TITULOS DEL MONITOREO */
+.tituloMonitoreo{
+    color: #000;
+    font-family: 'Roboto', sans-serif; /* Fuente Roboto */
+    text-align: center; /* Centrar el texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra del texto */
+}
+
+/*-----------------------------------------------------------------------------------------
+                           DISEÑO MONITOREO
+------------------------------------------------------------------------------------------*/
+.btnMonitoreo{
+    all: unset; /* Elimina todos los estilos predeterminados */
+    cursor: pointer; /* Mantener el cursor como pointer */
+    color: white; /* Heredar el color del texto */
+    font-size: 25px; /* Heredar el tamaño de la fuente */
+    font-family: 'Roboto', sans-serif; /* Fuente Roboto */
+  }
+  
+  .btnMonitoreo:hover,
+  .btnMonitoreo:focus {
+    background-color: transparent; /* Fondo transparente al hacer hover o focus */
+    border: none; /* Sin bordes */
+    outline: none; /* Sin contorno al hacer focus */
+}
+/* Estilo para el botón activo */
+.btnMonitoreo.activo {
+    font-weight: bold; /* Texto en negrita */
+    color: #ffffff; /* Cambiar el color del texto */
+    border-bottom: 5px solid #375db5; /* Subrayado */
+  }
+
+/*-------------------------------------------------*/
+/* Ocultar todas las secciones por defecto */
+.seccion {
+    display: none;
+  }
+  /* Mostrar la sección activa */
+  .seccion.activa {
+    display: block;
+  }
+
+/*-------------------------------------------------*/
+  /* Estilos para el contenedor principal */
+.contMonitoreo {
+    padding: 0;
+}
+/* Flexbox para alinear las columnas */
+.tablaFlex {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las columnas se ajusten en pantallas pequeñas */
+}
+
+/* Estilos para el contenido del contenedor de monitoreo*/
+.subtitulo{
+    font-size: 20px;
+    text-align: center;
+}
+.contGraRe{
+    font-size: 15px;
+    text-align: justify;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/*-----------------------------------------------------------------------------------------
+                           DISEÑO REGISTRO DE USUARIOS
+------------------------------------------------------------------------------------------*/
+/*Formulario */
+.formRegistro{
+    text-align: justify;
+    padding-left: 40px;
+}
+
+/*-------------------------------------------------*/
+/* Diseño del texto */
+.form-label{
+    padding-left: 25px;
+}
+
+/*-------------------------------------------------*/
+/*diseño de los textbox */
+.form-control{
+    width: 60%;
+    text-align: justify;
+    border-radius: 12px;
+    background-color: #ffffff;
+}
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 5px rgba(128, 189, 255, 0.5);
+}
+/* Cambiar el fondo de los elementos del dropdown al pasar el mouse */
+.form-control:hover {
+    background-color: #d0d0d0; /* Gris claro */
+    color: #000; /* Color del texto (opcional) */
+}
+
+/*-------------------------------------------------*/
+/* Diseño de los botones */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/*-----------------------------------------------------------------------------------------
+                           DISEÑO DEL FOCO
+------------------------------------------------------------------------------------------*/
+#foco {
+    width: 100px; /* Tamaño del contenedor */
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
