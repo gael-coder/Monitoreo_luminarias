@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mapa con Offcanvas, Imagen y Botones</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map { height: 500px; width: 100%; }
+
+    /* Estilos personalizados para el offcanvas */
+    .custom-offcanvas {
+      background-color: #2c3e50; /* Color de fondo oscuro */
+      color: #ecf0f1; /* Color del texto claro */
+    }
+    .custom-offcanvas img {
+      width: 100%; /* La imagen ocupa el ancho del offcanvas */
+      border-radius: 8px; /* Bordes redondeados */
+      margin-bottom: 16px; /* Espacio debajo de la imagen */
+    }
+    .custom-offcanvas .btn {
+      margin-right: 8px; /* Espacio entre los botones */
+    }
+  </style>
+      <link rel="icon" href="../imagenes/escudo_2977c841a7.png" type="image/x-icon">
+
+</head>
+<body>
+  <!-- Mapa -->
+  <div id="map"></div>
+
+  <!-- Offcanvas de Bootstrap (a la izquierda y con fondo personalizado) -->
+  <div class="offcanvas offcanvas-start custom-offcanvas" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Detalles del lugar</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body" id="offcanvasBody">
+      <!-- Contenido dinámico se cargará aquí -->
+    </div>
+  </div>
+
+  <!-- Bootstrap JS y dependencias -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Coordenadas del centro del mapa
+    var center = [25.446055, -100.993962]; // tec saltillo boilot
+
+    // Inicializar el mapa
+    var map = L.map('map').setView(center, 20);
+
+    // Añadir capa de OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+    }).addTo(map);
+
+    // Array de ubicaciones con contenido personalizado
+    var locations = [
+      { 
+        coords: [25.445075, -100.994251], //1
+        title: "Mérida", 
+        content: `
+          <p>1</p>
+          <img src="https://via.placeholder.com/400x200" alt="Mérida">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.445275, -100.994087], // 2
+        title: "Chichén Itzá", 
+        content: `
+          <p>2</p>
+          <img src="https://via.placeholder.com/400x200" alt="Chichén Itzá">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.445483, -100.994484], //3
+        title: "Cancún", 
+        content: `
+          <p>3</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.445512, -100.994066], //4
+        title: "Cancún", 
+        content: `
+          <p>4</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.445668, -100.994107], //5
+        title: "Cancún", 
+        content: `
+          <p>5</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.445581, -100.993702], //6
+        title: "Cancún", 
+        content: `
+          <p>6</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.445869, -100.994110], //7
+        title: "Cancún", 
+        content: `
+          <p>7</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.445906, -100.994139], //8
+        title: "Cancún", 
+        content: `
+          <p>8</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.445947, -100.994509], //9
+        title: "Cancún", 
+        content: `
+          <p>9</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.445886, -100.994008], //10
+        title: "Cancún", 
+        content: `
+          <p>10</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.445881, -100.993900], //11
+        title: "Cancún", 
+        content: `
+          <p>11</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.445865, -100.993745], //12
+        title: "Cancún", 
+        content: `
+          <p>12</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.445891, -100.993605], //13
+        title: "Cancún", 
+        content: `
+          <p>13</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.445915, -100.993396], //14
+        title: "Cancún", 
+        content: `
+          <p>14</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.445954, -100.993310], //15
+        title: "Cancún", 
+        content: `
+          <p>15</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.446257, -100.993270], //16
+        title: "Cancún", 
+        content: `
+          <p>16</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.445993, -100.993793], //17
+        title: "Cancún", 
+        content: `
+          <p>17</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.446138, -100.993839], //18
+        title: "Cancún", 
+        content: `
+          <p>18</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.446138, -100.993718], //19
+        title: "Cancún", 
+        content: `
+          <p>19</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.446296, -100.993678], //20
+        title: "Cancún", 
+        content: `
+          <p>20</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.446505, -100.993791], //21
+        title: "Cancún", 
+        content: `
+          <p>21</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.446554, -100.993944], //22
+        title: "Cancún", 
+        content: `
+          <p>22</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      },
+      { 
+        coords: [25.446791, -100.993708], //23
+        title: "Cancún", 
+        content: `
+          <p>23</p>
+          <img src="https://via.placeholder.com/400x200" alt="Cancún">
+          <div class="mt-3">
+            <button class="btn btn-primary">Más información</button>
+            <button class="btn btn-outline-light">Compartir</button>
+          </div>
+        `
+      }
+    ];
+
+    // Añadir marcadores con offcanvas
+    locations.forEach(function(location) {
+      var marker = L.marker(location.coords).addTo(map);
+
+      // Asignar evento de clic al marcador
+      marker.on('click', function() {
+        // Actualizar el contenido del offcanvas
+        document.getElementById('offcanvasExampleLabel').innerText = location.title;
+        document.getElementById('offcanvasBody').innerHTML = location.content;
+
+        // Mostrar el offcanvas
+        var offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasExample'));
+        offcanvas.show();
+      });
+    });
+  </script>
+</body>
+</html>
