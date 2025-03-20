@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luminarias</title>
+    <link rel="stylesheet" href="../2-css_s/styles4.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../imagenes/escudo_2977c841a7.png" type="image/x-icon">
+    <!-- FUENTE GOOGLE TIPO DE LETTRA-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <!-- CSS DE LA CARPETA DE LA SEGUNDA MITAD -->
+  <link rel="stylesheet" href="../Segunda_mitad/general.css">
+  <link rel="stylesheet" href="../Segunda_mitad/index.css">
+  <link rel="stylesheet" href="../Segunda_mitad/ubicacion.css">
+  <!--incluir bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap JS y dependencias -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</head>
+
+<body class="barracuerpo">
+    <!-- BARRA ARRIBA PARA LOGOS -->
+  <nav class="navbar bg-body-tertiary">
+    <div class="barra">
+      <img class="logos" src="../Segunda_mitad/media/logos/educacion.png">
+      <img class="logos" src="../Segunda_mitad/media/logos/tecnm.png">
+      <img class="logos" src="../Segunda_mitad/media/logos/its.jpg">
+
+      <!-- DROPDOWN -->
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="../Segunda_mitad/presentacion2.html">Home</a>
+        </li>
+        <li class="nav-item dropdown" id="dropdownHover">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+            aria-expanded="false">Monitoreo</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="../Segunda_mitad/Ubicacion.html">Control y Monitoreo </a></li>
+                        <li><a class="dropdown-item" href="../Segunda_mitad/MonitoreoElectrico.html">Monitoreo Eléctrico</a></li>
+                        <li><a class="dropdown-item" href="../Segunda_mitad/MonitoreoAmbiental.html">Monitoreo Ambiental</a></li>
+                        <li><a class="dropdown-item" href="../1-htmls/registrosAmbiental.html">Registro Ambiental</a></li>
+                        <li><a class="dropdown-item" href="../1-htmls/registrosElectrico.html">Registro Electrico</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <!-- ESTE ES PARA REGISTRAR A LOS NUEVOS USUARIOS -->
+            <li><a class="dropdown-item" href="../1-htmls/AnadirIng.html"> Registrar Usuario </a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+    <h1 class="titulo"> REGISTRAR USUARIO</h1>
+
+    <!-- Nueva Tabla -->
+    <table class="tabla">
+        <tbody>
+            <tr>
+                <td class="seccion_izquierda">
+                    <h2 style="color: white;">DATOS</h2>
+                    <form>
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre">
+
+                        <label for="apellido">Apellido</label>
+                        <input type="text" id="apellido" name="apellido" placeholder="Ingresa tu apellido">
+
+                        <label for="correo">Correo</label>
+                        <input type="email" id="correo" name="correo" placeholder="Ingresa tu correo">
+
+                        <label for="contraseña">Contraseña</label>
+                        <input type="password" id="contraseña" name="contraseña" placeholder="Ingresa tu contraseña">
+
+                        <label for="confirmar-contraseña">Confirmar Contraseña</label>
+                        <input type="password" id="confirmar-contraseña" name="confirmar-contraseña"
+                            placeholder="Confirma tu contraseña">
+                    </form>
+                    <div class="botones">
+                        <button class="btn">Agregar</button>
+                        <button class="btn">Modificar</button>
+                        <button class="btn">Eliminar</button>
+                    </div>
+
+                </td>
+                <td class="seccion_derecha">
+                    <h2 style="color: white;">REGISTRO DE CUENTAS</h2>
+                    <!-- Tabla para mostrar los registros -->
+                    <table class="tabla_usuarios">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Correo</th>
+                                <th>Contraseña</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Juan</td>
+                                <td>Pérez</td>
+                                <td>juan@example.com</td>
+                                <td>********</td>
+                            </tr>
+                            <tr>
+                                <td>Ana</td>
+                                <td>Gómez</td>
+                                <td>ana@example.com</td>
+                                <td>********</td>
+                            </tr>
+                            <tr>
+                                <td>Luis</td>
+                                <td>Martínez</td>
+                                <td>luis@example.com</td>
+                                <td>********</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="../Segunda_mitad/scripts/Dropdown.js"></script>
+</body>
+
+</html>

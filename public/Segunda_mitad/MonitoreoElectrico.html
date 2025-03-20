@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubicacion</title>
+    <!--incluir bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="general.css">
+    <link rel="stylesheet" href="ubicacion.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <!-- Bootstrap JS y dependencias -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+     <!-- Incluir Lottie -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.1/lottie.min.js"></script>
+     <link rel="icon" href="../imagenes/escudo_2977c841a7.png" type="image/x-icon">
+    <!-- FUENTE GOOGLE TIPO DE LETTRA-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body class="barracuerpo">
+    <!-- BARRA ARRIBA PARA LOGOS -->
+    <nav class="navbar bg-body-tertiary  w-100">
+        <div class="barra">
+            <img class="logos" src="media/logos/educacion.png">
+            <img class="logos" src="media/logos/tecnm.png">
+            <img class="logos" src="media/logos/its.jpg">
+
+            <!-- DROPDOWN -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="presentacion2.html">Home</a>
+                </li>
+                <li class="nav-item dropdown" id="dropdownHover">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false">Monitoreo</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="Ubicacion.html">Control y Monitoreo </a></li>
+                        <li><a class="dropdown-item" href="MonitoreoElectrico.html">Monitoreo Eléctrico</a></li>
+                        <li><a class="dropdown-item" href="MonitoreoAmbiental.html">Monitoreo Ambiental</a></li>
+                        <li><a class="dropdown-item" href="../1-htmls/registrosAmbiental.html">Registro Ambiental</a></li>
+                        <li><a class="dropdown-item" href="../1-htmls/registrosElectrico.html">Registro Electrico</a></li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <!-- ESTE ES PARA REGISTRAR A LOS NUEVOS USUARIOS -->
+            <li><a class="dropdown-item" href="../1-htmls/AnadirIng.html"> Registrar Usuario </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- TITULO -->
+    <h1 class="titulo py-5"> MONITOREO ELECTRICO
+        <hr>
+    </h1>
+
+    <!-- BOTONES PARA CAMBIAR ENTRE GRAFICA Y REGISTRO-->
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col-6 text-center">
+                <div class="mt-3">
+                    <button type="button" class="btnMonitoreo btn" data-seccion="graficas">GRAFICAS</button>
+                </div>
+            </div>
+            <div class="col-6 text-center">
+                <div class="mt-3">
+                    <button type="button" class="btnMonitoreo btn" data-seccion="registros">REGISTROS</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TABLA DE REGISTROS Y GRAFICAS CON MAPA OFFCANVAS -->
+    <div class="contMonitoreo container-fluid">
+        <div class="tablaFlex d-flex flex-row">
+            <!-- COLUMNA DE CONTENIDO (GRAFICAS/REGISTROS) -->
+            <div class="col-12 col-md-8 py-5">
+                <!-- SECCION DE GRAFICAS -->
+                <div id="graficas" class="seccion">
+                    <h2 class="subtitulo">Gráficas</h2>
+                    <p class="contGraRe">Contenido de las gráficas...</p>
+                </div>
+
+                <!-- SECCIÓN DE REGISTROS -->
+                <div id="registros" class="seccion">
+                    <h2 class="subtitulo">Registros</h2>
+                    <p class="contGraRe">Contenido de los registros...</p>
+                </div>
+            </div>
+
+            <!-- COLUMNA DEL MAPA Y OFFCANVAS -->
+            <div class="col-12 col-md-4 py-5 d-flex justify-content-center">
+                <!-- Mapa -->
+                <div id="map"></div>
+                <!-- Offcanvas de Bootstrap (a la izquierda y con fondo personalizado) -->
+                <div class="offcanvas offcanvas-start custom-offcanvas" tabindex="-1" id="offcanvasExample"
+                    aria-labelledby="offcanvasExampleLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title custom-title" id="offcanvasExampleLabel">Detalles del lugar</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body" id="offcanvasBody">
+                        <!-- Contenido dinámico se cargará aquí -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT PARA EL CAMBIO DE SECCION -->
+    <script src="scripts/Seccion.js"> </script>
+    <!-- SCRIPT PARA EL OFFCANVAS DEL MAPA -->
+    <script src="scripts/OffCanvasMapa.js"> </script>
+    <script src="scripts/Dropdown.js"></script>
+</body>
+
+</html>

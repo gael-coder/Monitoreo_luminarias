@@ -1,0 +1,107 @@
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luminarias</title>
+    <!-- Asegúrate de que la ruta sea correcta -->
+    <link rel="stylesheet" href="/csss/styles2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../imagenes/escudo_2977c841a7.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="header">
+        <img src="../imagenes/post_logo_educ.jpg" alt="Imagen 3">
+        <img src="../imagenes/tecnologico_nacional_de_mexico_campus_saltillo_cover.jpg" alt="Imagen 4">
+        <img src="../imagenes/Captura de pantalla 2025-02-19 121553.png" alt="Imagen 2">
+    </div>
+
+    <!-- Contenedor del video debajo del header -->
+    <div class="video-container" id="video-container">
+        <video id="intro-video" autoplay muted loop>
+            <source
+                src="../imagenes/AQMJ77BSE76MD3NvjJE5RAwc1QbSVkCb0FWpw3jTUh7cmqR2kIEG5MhxIwxE-K-_RKkKRubmbJ_NXJQHNQq2Ssb8.mp4"
+                type="video/mp4">
+            Tu navegador no soporta la etiqueta de video.
+        </video>
+
+        <!-- Botón para quitar el video -->
+        <button id="hide-video" class="hide-video-btn">&#8595;</button>
+    </div>
+
+    <!-- Título centrado al fondo -->
+    <div class="footer-title">
+        <h2>OBJETIVOS DE LA PAGINA</h2>
+    </div>
+
+    <div class="imagen-container">
+        <img src="../imagenes/escudo_2977c841a7.png" alt="Imagen 1" id="imagenLogin">
+    </div>
+
+    <div class="footer-rectangle">
+        <div class="footer-left-text">ID Usuario</div>
+        <div class="footer-center-text">Bienvenido: <span id="user-name">Nombre de la persona</span></div>
+    </div>
+    <div class="texto-container">
+        <p>Desarrollar e implementar un sistema de gestión energética que permita el
+            monitoreo en tiempo real del consumo eléctrico y el control remoto de luminarias
+            exteriores mediante tecnologías loT, así como el monitoreo de la calidad del aire en
+            el Tecnológico Nacional de México Campus Saltillo, contribuyendo a la
+            transformación hacia un Smart Campus y promoviendo el
+            rollo sustentable de la institución.</p>
+    </div>
+
+    <div class="boton-container">
+        <button class="boton-comenzar">Comenzar</button>
+        <button class="boton-agregar">Agregar Docente</button>
+    </div>
+    
+
+
+    <script>
+        // Lista de imágenes a mostrar en el contenedor
+        const imagenes = [
+            "../imagenes/tecnologico fondo2.jpg",
+            "../imagenes/tecnologico fondo4.jpg",
+            "../imagenes/tecnologico fondo5.jpg",
+            "../imagenes/tecnologico fondo6.jpg",
+            "../imagenes/472313458_980686220760138_2010104506202140217_n.jpg",
+            "../imagenes/tecnologico fondo7.jpg",
+        ];
+
+        let imagenIndex = 0; // Para controlar la imagen actual
+        const imagenElemento = document.getElementById("imagenLogin");
+
+        // Función para cambiar la imagen con el efecto de desvanecimiento
+        function cambiarImagen() {
+            // Agregar la clase de desvanecimiento a la imagen
+            imagenElemento.classList.add("fade");
+
+            // Esperar a que la animación de desvanecimiento termine antes de cambiar la imagen
+            setTimeout(() => {
+                // Incrementa el índice para la siguiente imagen
+                imagenIndex = (imagenIndex + 1) % imagenes.length;
+
+                // Cambiar la imagen del contenedor
+                imagenElemento.src = imagenes[imagenIndex];
+
+                // Eliminar la clase de desvanecimiento y re-aplicar la opacidad
+                setTimeout(() => {
+                    imagenElemento.classList.remove("fade");
+                }, 1000); // Esto coincide con la duración de la transición de desvanecimiento
+            }, 1000); // Tiempo que tarda el desvanecimiento (debe ser igual al tiempo de transición)
+        }
+
+        // Cambiar la imagen cada 5 segundos (5000 milisegundos)
+        setInterval(cambiarImagen, 5000);
+        // Función para ocultar el video con animación
+        document.getElementById("hide-video").addEventListener("click", function () {
+            document.getElementById("video-container").classList.add("slide-up");
+        });
+
+
+    </script>
+</body>
+
+</html>

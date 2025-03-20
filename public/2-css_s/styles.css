@@ -1,0 +1,280 @@
+body {
+    font-family: 'Merriweather', serif;
+    background-image: url('../imagenes/472313458_980686220760138_2010104506202140217_n.jpg'); /* Imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+    margin: 0;
+    padding: 0;
+    margin-top: 100px; /* Deja espacio para el header */
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Capa oscura sobre el fondo */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Oscurecimiento */
+    z-index: -1;
+}
+
+/* Header */
+.header {
+    background-color: white;
+    height: 80px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+    animation: slideInFromRight 2s ease-out; /* Deslizar desde la derecha */
+}
+
+.header img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Rectángulo blanco con dos columnas */
+.rectangulo-blanco {
+    box-sizing: border-box; /* Incluye padding y border en el ancho/alto */
+    width: 100%; /* Ocupa el 100% del ancho disponible */
+    max-width: 1200px; /* Ancho máximo del contenedor (opcional) */
+    background-color: rgba(70, 70, 70, 0.7); /* Fondo semi-transparente */
+    color: white;
+    margin: 150px auto 20px; /* Margen superior de 150px, centrado horizontalmente, margen inferior de 20px */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    padding: 40px 20px; /* Padding interno: 40px arriba/abajo, 20px a los lados */
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: fadeInFromTop 2s ease-out forwards; /* Animación */
+    animation-delay: 2s; /* Espera 2 segundos después de que el header termine */
+}
+
+/* Sección de Login */
+.login-container {
+    width: 90%;
+    text-align: left;
+}
+
+.login-container h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.login-container label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.login-container input {
+    width: 90%;
+    height: 10%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+}
+
+.login-container button {
+    background-color: #192C5A;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    width: 30%;
+    border-radius: 5px;
+    display: inline-block; /* Hace que el botón sea un elemento en línea-bloque */
+    text-align: center; /* Centra el texto dentro del botón */
+}
+
+.login-container button:hover {
+    background-color: #4c9baf;
+}
+
+/*------------------------------------------------------------------------------------------
+                            PENDIENTEEEEE
+------------------------------------------------------------------------------------------*/
+/* Sección de Imagen */
+/* Contenedor de la columna de imágenes */
+.col-lg-4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenedor del carrusel */
+.imagen-container {
+    width: 100%;
+    max-width: 400px; /* Fija un ancho máximo para la columna */
+    height: 400px; /* Altura fija */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Imágenes del carrusel */
+.carousel-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Asegura que ocupe toda la altura del contenedor */
+}
+
+/* Imágenes del carrusel */
+.carousel-item img {
+    width: 100%; /* Ocupa el 100% del contenedor */
+    height: 100%; /* Ocupa el 100% del contenedor */
+    object-fit: contain; /* Mantiene la proporción sin recortar */
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: opacity 1s ease-in-out;
+}
+
+/*-----------------------------------------------------------------------*/
+
+.fade {
+    opacity: 0;
+}
+
+.login-container h2 {
+    text-align: center; /* Centra el texto horizontalmente */
+    font-size: 32px; /* Ajusta el tamaño del texto si lo deseas */
+    margin-bottom: 50px; /* Espacio debajo del h2 */
+}
+
+.olvidaste-clave {
+    display: block; /* Hace que el enlace ocupe todo el ancho */
+    font-size: 16px; /* Ajusta el tamaño de la fuente */
+    text-decoration: underline; /* Subraya el texto */
+    color: white; /* Color del texto */
+    cursor: pointer; /* Cambia el cursor a mano al pasar sobre el enlace */
+}
+
+.olvidaste-clave:hover {
+    color: #0c5466; /* Cambia el color cuando el mouse pasa sobre el enlace */
+}
+
+/* -------------------------ANIMACIONES------------------------------------ */
+/* Animación de desplazamiento del header */
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%); /* Empieza fuera de la pantalla a la derecha */
+    }
+    100% {
+        transform: translateX(0); /* Termina en su posición original */
+    }
+}
+
+/* Animación para las imágenes dentro del header */
+.header img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards; /* Aparecen gradualmente */
+}
+
+/* Aparece las imágenes de manera secuencial */
+.header img:nth-child(1) {
+    animation-delay: 0s; /* Primera imagen aparece inmediatamente */
+}
+
+.header img:nth-child(2) {
+    animation-delay: 0.5s; /* Segunda imagen con un pequeño retraso */
+}
+
+.header img:nth-child(3) {
+    animation-delay: 1s; /* Tercera imagen con un retraso más largo */
+}
+
+/* Animación para la aparición de las imágenes */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Animación de desvanecimiento y desplazamiento hacia abajo */
+@keyframes fadeInFromTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px); /* Comienza desde arriba */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Termina en su posición original */
+    }
+}
+
+/* Animación de desvanecimiento hacia abajo para el rectángulo blanco */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(50px); /* Se moverá ligeramente hacia abajo mientras desaparece */
+    }
+}
+
+.fadeOut {
+    animation: fadeOut 1s ease-out forwards; /* Aplica la animación de desvanecimiento */
+}
+
+/* Estilo para el mensaje de bienvenida */
+.mensaje-bienvenida {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra el texto */
+    
+    padding: 30px;
+    border-radius: 10px;
+    color: #333;
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 2px;
+    opacity: 0;
+    visibility: hidden; /* Oculto inicialmente */
+    transition: opacity 2s ease-out, visibility 0s linear 2s; /* Transición suave de opacidad y visibilidad */
+}
+
+
+/* Cuando se hace visible el mensaje, la opacidad cambia y la visibilidad se activa */
+.mensaje-bienvenida.visible {
+    opacity: 1;
+    visibility: visible; /* Se vuelve visible */
+    transition: opacity 2s ease-out; /* Solo transición de opacidad */
+    color: white;
+}
+
+
+
+
+
