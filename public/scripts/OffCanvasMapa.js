@@ -28,22 +28,37 @@ if (document.getElementById('map')) {
             </div>
             <div class="filaOffCanvas row">
                 <div class="col-12">
-                    <h4 class="textoLuminaria">Consumo de energía: ${location.consumoEnergia}</h4>
+                    <h4 class="textoLuminaria">Consumo de Energía: ${location.consumoEnergia}</h4>
                 </div>
             </div>
             <div class="filaOffCanvas row">
                 <div class="col-12">
-                    <h4 class="textoLuminaria">PM 2.5: ${location.pm25}</h4>
+                    <h4 class="textoLuminaria">Horas de Uso: ${location.hrsUso}</h4>
+                </div>
+            </div>
+            <div class="filaOffCanvas row">
+                <div class="col-12 text-center">
+                    <h4>Alertas</h4>
                 </div>
             </div>
             <div class="filaOffCanvas row">
                 <div class="col-12">
-                    <h4 class="textoLuminaria">PM 10: ${location.pm10}</h4>
+                    <h4 class="textoLuminaria">Inclinación Sostenida: ${location.inclSostenida}</h4>
                 </div>
             </div>
             <div class="filaOffCanvas row">
                 <div class="col-12">
-                    <h4 class="textoLuminaria">Ruido: ${location.ruido}</h4>
+                    <h4 class="textoLuminaria">Luminaria Parpadeante: ${location.lumParpadeante}</h4>
+                </div>
+            </div>
+            <div class="filaOffCanvas row">
+                <div class="col-12">
+                    <h4 class="textoLuminaria">Sobretensión: ${location.sobretension}</h4>
+                </div>
+            </div>
+            <div class="filaOffCanvas row">
+                <div class="col-12">
+                    <h4 class="textoLuminaria">Subtensión: ${location.subtension}</h4>
                 </div>
             </div>
             <div class="filaOffCanvas row">
@@ -52,6 +67,18 @@ if (document.getElementById('map')) {
                 </div>
                 <div id="foco" class="col-6 style="margin: 0 auto;">
                     
+                </div>
+            </div>
+           <div class="filaOffCanvas row">
+                <div class="col-6 text-center">
+                    <label class="textoLuminaria">Hora de Encendido:
+                        <input type="time" class="form-control mt-2" value="${location.hraEncendido}" id="horaEncendido-${location.id}">
+                    </label>
+                </div>
+                <div class="col-6 text-center">
+                    <label class="textoLuminaria">Hora de Apagado:
+                        <input type="time" class="form-control mt-2" value="${location.hraApagado}" id="horaApagado-${location.id}">
+                    </label>
                 </div>
             </div>
 
@@ -67,35 +94,35 @@ if (document.getElementById('map')) {
     }
 
     // Cargar la animación desde un JSON local
-   // Espera a que se abra el offcanvas para cargar la animación
-document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas', () => {
-    // Cargar la animación desde un JSON local
-    fetch('../foco.json') // Ruta relativa al archivo JSON 
-        .then(response => response.json()) // Convertir la respuesta a JSON
-        .then(data => {
-            const focoAnimacion = lottie.loadAnimation({
-                container: document.getElementById('foco'), // Contenedor HTML
-                renderer: 'svg', // Formato de renderizado
-                loop: false, // No repetir la animación
-                autoplay: false, // No iniciar automáticamente
-                animationData: data // JSON cargado localmente
+    // Espera a que se abra el offcanvas para cargar la animación
+    document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas', () => {
+        // Cargar la animación desde un JSON local
+        fetch('../foco.json') // Ruta relativa al archivo JSON 
+            .then(response => response.json()) // Convertir la respuesta a JSON
+            .then(data => {
+                const focoAnimacion = lottie.loadAnimation({
+                    container: document.getElementById('foco'), // Contenedor HTML
+                    renderer: 'svg', // Formato de renderizado
+                    loop: false, // No repetir la animación
+                    autoplay: false, // No iniciar automáticamente
+                    animationData: data // JSON cargado localmente
+                });
+
+                // Controlar la animación con los botones (se asegura de que existan)
+                const btnEncender = document.getElementById('encender');
+                const btnApagar = document.getElementById('apagar');
+
+                if (btnEncender && btnApagar) {
+                    btnEncender.addEventListener('click', () => focoAnimacion.play());
+                    btnApagar.addEventListener('click', () => focoAnimacion.stop());
+                } else {
+                    console.warn('Botones de encender/apagar no encontrados.');
+                }
+            })
+            .catch(error => {
+                console.error('Error al cargar el JSON:', error);
             });
-
-            // Controlar la animación con los botones (se asegura de que existan)
-            const btnEncender = document.getElementById('encender');
-            const btnApagar = document.getElementById('apagar');
-
-            if (btnEncender && btnApagar) {
-                btnEncender.addEventListener('click', () => focoAnimacion.play());
-                btnApagar.addEventListener('click', () => focoAnimacion.stop());
-            } else {
-                console.warn('Botones de encender/apagar no encontrados.');
-            }
-        })
-        .catch(error => {
-            console.error('Error al cargar el JSON:', error);
-        });
-});
+    });
 
 
     // Array de ubicaciones con contenido personalizado
@@ -105,9 +132,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "LUMINARIA #1",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
 
         },
@@ -116,9 +147,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "LUMINARIA #2",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
 
         },
@@ -127,9 +162,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #3",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
 
         },
@@ -138,9 +177,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #4",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
 
         },
@@ -149,9 +192,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #5",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
 
         },
@@ -160,9 +207,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #6",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
 
         },
@@ -171,9 +222,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #7",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
 
         },
@@ -182,9 +237,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #8",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
 
         },
@@ -193,9 +252,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #9",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
 
         },
@@ -204,9 +267,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #10",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
 
         },
@@ -215,9 +282,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #11",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
 
         },
@@ -226,9 +297,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #12",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
 
         },
@@ -237,9 +312,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #13",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
 
         },
@@ -248,9 +327,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #14",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
 
         },
@@ -259,9 +342,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #15",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
         },
         {
@@ -269,9 +356,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #16",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
         },
         {
@@ -279,9 +370,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #17",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
         },
         {
@@ -289,9 +384,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #18",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
         },
         {
@@ -299,9 +398,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #19",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
         },
         {
@@ -309,9 +412,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #20",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
         },
         {
@@ -319,9 +426,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #21",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
         },
         {
@@ -329,9 +440,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #22",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
         },
         {
@@ -339,9 +454,13 @@ document.getElementById('offcanvasExample').addEventListener('shown.bs.offcanvas
             title: "Luminaria #23",
             estado: "Bueno",
             consumoEnergia: "100 kWh", // Datos dinámicos
-            pm25: "15 µg/m³",
-            pm10: "25 µg/m³",
-            ruido: "65 dB",
+            hrsUso: "3",
+            inclSostenida: "0",
+            lumParpadeante: "0",
+            sobretension: "",
+            subtension: "",
+            hraEncendido: "",
+            hraApagado: " ",
             imagen: "https://via.placeholder.com/400x200", // URL de la imagen
         }
     ];
