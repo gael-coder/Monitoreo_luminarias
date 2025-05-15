@@ -1,0 +1,245 @@
+/*-----------------------------------------------------------------------------------------
+                            CSS PARA EL HTML DE UBICACION, MONITOREOELECTRICO
+------------------------------------------------------------------------------------------*/
+/* TITULO */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+/*-----------------------------------------------------------------------------------------
+                            TODO LO RELACIONADO CON EL MAPA
+------------------------------------------------------------------------------------------*/
+/* MAPA INTERACTIVO DE OPENSTREETMAP */
+#map { 
+    position: relative;
+    width: 80%; 
+    align-items: center;
+    padding-top: 50%;
+    justify-content: center;
+    border-radius: 30px;
+}
+
+/*-------------------------------------------------*/
+/* Estilos personalizados para el offcanvas */
+.offcanvas-header {
+    display: flex;
+    justify-content: center; /* Centrar el contenido horizontalmente */
+    align-items: center; /* Centrar el contenido verticalmente */
+    width: 100%; /* Asegurar que ocupe todo el ancho */
+  }
+  .offcanvas-title {
+    font-family: 'Roboto', sans-serif; /* Fuente Roboto */
+    font-size: 1.5rem; /* Tamaño del texto */
+    font-weight: 700; /* Grosor de la fuente (negrita) */
+    text-align: center; /* Centrar el texto */
+    margin: 0; /* Eliminar margen predeterminado */
+    flex-grow: 1; /* Hacer que el título ocupe todo el espacio disponible */
+  }
+.custom-offcanvas {
+    background-color: #D3D3D3; /* Color de fondo oscuro */
+    color: #000000; /* Color del texto claro */
+    font-family: 'Roboto', sans-serif; /* Fuente Roboto */
+    font-size:larger; /* Tamaño del texto */
+    text-align: justify;
+}
+.custom-offcanvas img {
+    width: 100%; /* La imagen ocupa el ancho del offcanvas */
+    border-radius: 8px; /* Bordes redondeados */
+    margin-bottom: 16px; /* Espacio debajo de la imagen */
+}
+.custom-offcanvas .btn {
+    margin-right: 8px; /* Espacio entre los botones */
+}
+
+/*-------------------------------------------------*/
+/* MARCAR LAS LINEAS DE LAS FILAS*/
+.filaOffCanvas {
+    position: relative; /* Necesario para posicionar el pseudo-elemento */
+    padding: 10px 0; /* Espaciado interno */
+  }
+  .filaOffCanvas::after {
+    content: ''; /* Pseudo-elemento vacío */
+    position: absolute;
+    bottom: 0; /* Posición en la parte inferior */
+    left: 0;
+    width: 100%; /* Ancho completo */
+    height: 2px; /* Grosor de la línea */
+    background-color: #000000; /* Color de la línea */
+  }
+  /* Eliminar la línea de la última fila */
+  .filaOffCanvas:last-child::after {
+    display: none;
+  }
+
+  /*-------------------------------------------------*/
+/* TEXTO DEL CONTENIDO DE LAS FILAS*/
+.textoLuminaria{
+    color: #000000; /* Color del texto claro */
+    font-family: 'Roboto', sans-serif; /* Fuente Roboto */
+    font-size:medium; /* Tamaño del texto */
+    text-align: justify;
+}
+
+.textoEstado{
+    color: #000000; /* Color del texto claro */
+    font-family: 'Roboto', sans-serif; /* Fuente Roboto */
+    font-size: larger;
+    text-align: center;
+}
+
+/*-------------------------------------------------*/
+/* BOTON ENCENDIDO Y APAGADO*/
+.btnEncApa{
+    background-color: #D3D3D3;
+    border-color: #D3D3D3;
+}
+.btn:hover{
+    background-color: #192C5A;
+    border-color: #192C5A;
+    color: #D3D3D3;
+}
+/*-----------------------------------------------------------------------------------------
+                            DISEÑO PARA LA SELECCION DE MONITOREO
+------------------------------------------------------------------------------------------*/
+/* Contenedor principal */
+.container.py-5 {
+    overflow: visible; /* Permite que el movimiento se vea */
+    padding: 20px 0;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #242424;
+    border-radius: 25px;
+}
+
+/* Contenedor que agrupa ambos elementos */
+.animation-container {
+    position: relative;
+    width: 497px;
+    height: calc(497px + 35px); /* Añade espacio para los márgenes */
+    margin: 0 auto;
+}
+
+/* Imagen de luminaria (se moverá a la izquierda) */
+.image-container {
+    width: 497px;
+    height: 497px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.6s ease;
+    margin: 15px 0; /* Espacio vertical */
+    z-index: 1;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Contenedor de gráficas/registros (se moverá a la derecha) */
+.graficaRegistro {
+    width: 497px;
+    height: 497px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scale(0.95);
+    margin: 15px 0; /* Espacio vertical */
+    opacity: 0;
+    background: rgba(255, 255, 255, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.6s ease;
+    z-index: 2;
+    border-radius: 25px;
+}
+
+/* Efecto hover */
+/* Versión con 60px de separación (30px para cada lado) */
+.animation-container:hover .image-container {
+    transform: translateX(calc(-100% - 30px)); /* Mueve la imagen más a la izquierda */
+}
+
+.animation-container:hover .graficaRegistro {
+    transform: translateX(calc(0% + 30px)) scale(1); /* Mueve el contenido más a la derecha */
+    opacity: 1;
+}
+
+/* Animaciones para título y contenido */
+.tituloMonitoreo,
+.content-row {
+    color: #000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+
+.animation-container:hover .tituloMonitoreo {
+    transition-delay: 0.3s;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.animation-container:hover .content-row {
+    transition-delay: 0.4s;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efectos hover para gráficas/registro */
+.graficas, .registro {
+    transition: all 0.3s ease;
+}
+
+.graficas:hover, .registro:hover {
+    transform: scale(1.15);
+}
+/*-----------------------------------------------------------------------------------------
+                           DISEÑO MONITOREO
+------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------*/
+  /* Estilos para el contenedor principal */
+.contMonitoreo {
+    padding: 0;
+}
+/* Flexbox para alinear las columnas */
+.tablaFlex {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las columnas se ajusten en pantallas pequeñas */
+}
+
+/* Estilos para el contenido del contenedor de monitoreo*/
+.subtitulo{
+    font-size: 20px;
+    text-align: center;
+}
+.contGraRe{
+    font-size: 15px;
+    text-align: justify;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.graFondo{
+    border-radius: 15px;
+    background-color:#242424;
+    text-align: center;
+}
+
+/*-----------------------------------------------------------------------------------------
+                           DISEÑO DEL FOCO
+------------------------------------------------------------------------------------------*/
+#foco {
+    width: 100px; /* Tamaño del contenedor */
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
