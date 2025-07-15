@@ -243,3 +243,24 @@
     align-items: center;
     justify-content: center;
 }
+
+/*-----------------------------------------------------------------------------------------
+                           DISEÑO DEL MODAL PARA REGISTRO LUMINARIA
+------------------------------------------------------------------------------------------*/
+/* Estilos para el modal */
+#registroLuminariaModal .modal-content {
+  border: none;
+  border-radius: 10px;
+  color: #000;
+}
+
+#registroLuminariaModal .modal-header {
+  border-radius: 10px 10px 0 0;
+  
+}
+
+#registroLuminariaModal .form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  
+}
