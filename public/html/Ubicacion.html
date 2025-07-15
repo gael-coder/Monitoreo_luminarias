@@ -103,10 +103,58 @@
         </div>
     </div>
 
-    <!-- DIV PARA PONER ALGO QUE AUN NO SE QUE SEA PERO DEBE HABER ALGO NMMS NO SE ME OCURRE NADA AUXILIO-->
+    <!-------------------------------------------------------------------------------------------------------------
+                                        MODAL REGISTRO LUMINARIA                               
+    -------------------------------------------------------------------------------------------------------------->
     <div class="container py-5">
-
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6 text-center">
+                <!-- Botón para abrir el modal -->
+                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                    data-bs-target="#registroLuminariaModal">
+                    REGISTRAR LUMINARIA
+                </button>
+            </div>
+        </div>
     </div>
+
+    <!-- Modal (fuera del container) -->
+    <div class="modal fade" id="registroLuminariaModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="registroLuminariaModalLabel">Registrar Nueva Luminaria</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulario de registro -->
+                    <form id="registroLuminariaForm">
+                        <div class="mb-3">
+                            <label for="luminariaId" class="form-label">ID de la Luminaria</label>
+                            <input type="number" class="form-control" id="luminariaId" required
+                                placeholder="Ingrese el ID numérico">
+                            <div class="form-text">Este ID debe coincidir con el sistema físico.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="luminariaId" class="form-label">Token</label>
+                            <input type="number" class="form-control" id="luminariaId" required
+                                placeholder="Ingrese el token">
+                            <div class="form-text">Este token no puede coincidir con otras luminarias.</div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Eliminar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Modificar</button>
+                    <button type="submit" form="registroLuminariaForm" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!------------------------------------------------------------------------------------------------------------->
+
 
     <!-- IMAGENES QUE LLEVAN A GRAFICAS O REGISTROS -->
     <div class="container py-5">
@@ -175,10 +223,12 @@
                         <p class="footerText">
                         <h6>
                             <b> Dirección </b><br>
-                            Blvd. Venustiano Carranza #2400, Col. Tecnológico, Saltillo, Coahuila, México C.P. 25280
+                            Blvd. Venustiano Carranza #2400, Col. Tecnológico, Saltillo, Coahuila, México C.P.
+                            25280
                             <br><br>
                             <b> Contacto </b><br>
-                            <a class="correo" href="mailto:luis.mp3@saltillo.tecnm.mx?"> luis.mp3@saltillo.tecnm.mx </a>
+                            <a class="correo" href="mailto:luis.mp3@saltillo.tecnm.mx?">
+                                luis.mp3@saltillo.tecnm.mx </a>
                             <br>
                             <a class="correo" href="mailto:jonam.sc@saltillo.tecnm.mx?">jonam.sc@saltillo.tecnm.mx
                             </a><br>
@@ -191,7 +241,8 @@
                         <p class="footerText">
                         <h6>
                             <b> Enlaces </b><br>
-                            <a class="correo" href="https://www.saltillo.tecnm.mx/">Portal Instituto Tecnológico de
+                            <a class="correo" href="https://www.saltillo.tecnm.mx/">Portal Instituto Tecnológico
+                                de
                                 Saltillo</a>
                         </h6>
                         </p>
@@ -210,6 +261,33 @@
     <script src="../scripts/OffCanvasMapa.js"> </script>
     <script src="../scripts/Dropdown.js"></script>
     <script src="../scripts/MapaUbi.js"></script>
+    <script>
+        document.getElementById('registroLuminariaForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Obtener valores del formulario
+            const luminariaId = document.getElementById('luminariaId').value;
+            const ubicacion = document.getElementById('ubicacion').value;
+            const tipo = document.getElementById('tipoLuminaria').value;
+
+            // Aquí iría tu lógica para guardar en base de datos
+            console.log('Datos a guardar:', {
+                id: luminariaId,
+                ubicacion: ubicacion,
+                tipo: tipo
+            });
+
+            // Cerrar el modal después de guardar
+            const modal = bootstrap.Modal.getInstance(document.getElementById('registroLuminariaModal'));
+            modal.hide();
+
+            // Mostrar notificación de éxito
+            alert(`Luminaria ID ${luminariaId} registrada correctamente`);
+
+            // Resetear el formulario
+            this.reset();
+        });
+    </script>
 </body>
 
 </html>
